@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import BlogPage from "./pages/Blog/BlogPage";
 
@@ -8,14 +8,6 @@ function App() {
     <div className="App">
       <Router>
         <div>
-          <ul>
-            <li>
-              <Link to="/">Blog</Link>
-            </li>
-          </ul>
-
-          <hr />
-
           <Routes>
             <Route path="/" element={<BlogPage />} />
           </Routes>
