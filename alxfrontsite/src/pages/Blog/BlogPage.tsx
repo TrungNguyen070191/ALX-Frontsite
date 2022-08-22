@@ -1,3 +1,5 @@
+import CardComponent from "../../components/Card/CardComponent";
+import ControlledCarousel from "../../components/ControlledCarousel/ControlledCarousel";
 import Layout from "../../components/Layout/Layout";
 import { Link } from 'react-router-dom';
 import Article from '../Article/Article';
