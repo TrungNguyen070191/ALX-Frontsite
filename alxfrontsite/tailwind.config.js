@@ -2,6 +2,9 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", ],
   theme: {
+    fontFamily:{
+      'helvetica-neue':['Helvetica Neu']
+    },
     colors: {
       white: '#fff',
       'primary': {

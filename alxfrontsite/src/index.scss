@@ -8,15 +8,11 @@
 
 body {
   margin: 0;
-  font-family: 'NVN Motherland Signature';
+  font-family: 'NVN Motherland Signature', serif;
   font-size: 13px;
   padding: 1.25rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 .alx-divider {
   background-image: url('../src/assets/images/divider.svg');

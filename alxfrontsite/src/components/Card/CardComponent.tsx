@@ -1,29 +1,33 @@
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 
-import "./CardComponent.scss";
-
-const CardComponent = () => {
+import { Link } from 'react-router-dom';
+import calendarIcon from '../../assets/images/calendar-icon.svg';
+import clockIcon from '../../assets/images/clock-icon.svg';
+import image4 from '../../assets/images/image4.jpg';
+import { CardModel } from '../../models/card.model';
+const CardComponent = (model: CardModel) => {
   return (
-    <Card className="card-container">
-      <div className="top-text">
-        <span>22/08/2022</span>
-        <span>2 phút</span>
+    <div className="bg-white shadow-lg rounded-3xl border border-neutral-n20 p-3 sm:p-4 md:p-6 flex flex-col gap-6">
+      <div className="text-sm text-neutral-n40 flex justify-between">
+        <span className="flex items-center">
+          <img src={calendarIcon} className="w-4 h-4 inline mr-1" alt="" />
+          <time>{model.publishDate}</time>
+        </span>
+        <span className="flex items-center">
+          <img src={clockIcon} className="w-4 h-4 inline mr-1" alt="" />
+          <time>2 phút</time>
+        </span>
       </div>
-
-      <Card.Img
-        variant="top"
-        src="https://www.anlacxa.com/_next/image?url=https%3A%2F%2Fan-lac-xa.herokuapp.com%2Fuploads%2Fthis_shrimp_is_awesome_f641dd07d4.jpg&w=828&q=75"
-      />
-      <Card.Body>
-        <Card.Text>Thiên Nhiên</Card.Text>
-        <Card.Title>This shrimp is awesome</Card.Title>
-      </Card.Body>
-
-      <div className="bot-text">
-        <span>Author</span>
+      <img src={image4} className="rounded-3xl" alt="" />
+      <div className="flex flex-col flex-grow gap-4">
+        <div>
+          <span className="text-sm text-thin text-secondary bg-secondary-light px-4 py-1 rounded-full">{model.type}</span>
+        </div>
+        <Link to={'article/' + model.slug} >
+          <h5 className="flex-grow font-medium text-lg text-secondary mb-3 cursor-pointer hover:text-primary">{model.title}</h5>
+        </Link>
+        <p className="text-sm text-neutral-n40">{model.author}</p>
       </div>
-    </Card>
+    </div>
   );
 };
 
