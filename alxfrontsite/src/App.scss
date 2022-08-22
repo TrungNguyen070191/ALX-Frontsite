@@ -1,5 +1,9 @@
+@import "~bootstrap/scss/bootstrap";
+
 .App {
   text-align: center;
+  box-sizing: border-box;
+  padding: 20px;
 }
 
 .App-logo {
