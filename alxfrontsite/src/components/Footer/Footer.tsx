@@ -1,19 +1,12 @@
 import "./Footer.scss";
 
 const Footer = () => {
-  return (
-    <div className="footer">
-      <img
-        className="divider"
-        src="https://www.anlacxa.com/svgs/divider.svg"
-        alt=""
-      />
-
-      <footer className="text-center">
-        Copyright © 2022 An Lạc Xá - Lắng nghe sự sống bên trong bạn
-      </footer>
+  return (<footer className="text-center">
+    <div className="alx-divider w-3/5 mx-auto my-8"></div>
+    <div className="mt-20">
+      Copyright © 2022 An Lạc Xá - Lắng nghe sự sống bên trong bạn
     </div>
-  );
+  </footer>);
 };
 
 export default Footer;
