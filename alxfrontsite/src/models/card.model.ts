@@ -1,7 +1,10 @@
 export interface CardModel {
-    type: string;
+    id: string;
     title: string;
-    slug: string;
-    author: string;
     publishDate: string;
+    type: string;
+    img: string;
+    author: string;
+    content: string;
+    slug: string;
 }
