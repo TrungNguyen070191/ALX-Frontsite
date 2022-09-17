@@ -16,50 +16,50 @@ const carouselData = [
   { slug: "slug-3", text: "Thải độc và Thanh lọc Thân Tâm", imageSrc: image3 },
 ] as CarouselItemModel[];
 
-const cardData = [
-  {
-    title: "The internet's Own boy",
-    author: "Thầy Minh Cảnh",
-    publishDate: "21/08/2022",
-    type: "Tin tức",
-    slug: "tin-tuc-1",
-  },
-  {
-    title: "The internet's Own boy",
-    author: "Thầy Minh Cảnh",
-    publishDate: "21/08/2022",
-    type: "Tin tức",
-    slug: "tin-tuc-2",
-  },
-  {
-    title: "The internet's Own boy",
-    author: "Thầy Minh Cảnh",
-    publishDate: "21/08/2022",
-    type: "Tin tức",
-    slug: "tin-tuc-3",
-  },
-  {
-    title: "The internet's Own boy",
-    author: "Thầy Minh Cảnh",
-    publishDate: "21/08/2022",
-    type: "Tin tức",
-    slug: "tin-tuc-4",
-  },
-  {
-    title: "The internet's Own boy",
-    author: "Thầy Minh Cảnh",
-    publishDate: "21/08/2022",
-    type: "Tin tức",
-    slug: "tin-tuc-5",
-  },
-  {
-    title: "The internet's Own boy",
-    author: "Thầy Minh Cảnh",
-    publishDate: "21/08/2022",
-    type: "Tin tức",
-    slug: "tin-tuc-5",
-  },
-] as CardModel[];
+// const cardData = [
+//   {
+//     title: "The internet's Own boy",
+//     author: "Thầy Minh Cảnh",
+//     publishDate: "21/08/2022",
+//     type: "Tin tức",
+//     slug: "tin-tuc-1",
+//   },
+//   {
+//     title: "The internet's Own boy",
+//     author: "Thầy Minh Cảnh",
+//     publishDate: "21/08/2022",
+//     type: "Tin tức",
+//     slug: "tin-tuc-2",
+//   },
+//   {
+//     title: "The internet's Own boy",
+//     author: "Thầy Minh Cảnh",
+//     publishDate: "21/08/2022",
+//     type: "Tin tức",
+//     slug: "tin-tuc-3",
+//   },
+//   {
+//     title: "The internet's Own boy",
+//     author: "Thầy Minh Cảnh",
+//     publishDate: "21/08/2022",
+//     type: "Tin tức",
+//     slug: "tin-tuc-4",
+//   },
+//   {
+//     title: "The internet's Own boy",
+//     author: "Thầy Minh Cảnh",
+//     publishDate: "21/08/2022",
+//     type: "Tin tức",
+//     slug: "tin-tuc-5",
+//   },
+//   {
+//     title: "The internet's Own boy",
+//     author: "Thầy Minh Cảnh",
+//     publishDate: "21/08/2022",
+//     type: "Tin tức",
+//     slug: "tin-tuc-5",
+//   },
+// ] as CardModel[];
 
 const DEFAULT_ITEM = 3;
 
@@ -67,22 +67,18 @@ const BlogPage = () => {
   const [articles, setArticles] = useState<CardModel[]>([]);
   const [limit, setLimit] = useState<number>(1);
 
-  // useEffect(() => {
-  //   fetchArticles();
-  // }, [articles]);
+  useEffect(() => {
+    fetchArticles();
+  }, []);
 
-  function fetchArticles() {
-    getArticles()
-      ?.then((res) => {
-        const data: CardModel[] = res?.results;
+  async function fetchArticles() {
+    const data = await getArticles().then((res) => res.data);
 
-        if (data?.length > 0) {
-          const transformedData = transformArticleData(data);
+    if (data?.length > 0) {
+      const transformedData = transformArticleData(data);
 
-          setArticles(transformedData);
-        }
-      })
-      .catch((err) => console.log(err));
+      setArticles(transformedData);
+    }
   }
 
   function transformArticleData(data: any[]): CardModel[] {
@@ -90,7 +86,7 @@ const BlogPage = () => {
 
     data.map((item) => {
       return articles.push({
-        id: item._id,
+        id: item.hash,
         title: item.title,
         publishDate: item.createdAt,
         type: item.category,
@@ -112,8 +108,8 @@ const BlogPage = () => {
 
   function hasShowMore(): boolean {
     if (
-      cardData.length > 3 &&
-      limit < Math.ceil(cardData.length / DEFAULT_ITEM)
+      articles.length > 3 &&
+      limit < Math.ceil(articles.length / DEFAULT_ITEM)
     ) {
       return true;
     }
@@ -139,7 +135,7 @@ const BlogPage = () => {
 
       <div className="container mx-auto flex flex-col gap-8">
         <div className="grid grid-cols-1 gap-6 font-helvetica-neue grid-cols-1 sm:grid-cols-2  md:grid-cols-3 mt-2 sm:4 md:mt-8">
-          {cardData?.map((x: CardModel, idx: number) => {
+          {articles?.map((x: CardModel, idx: number) => {
             if (idx < DEFAULT_ITEM * limit) {
               return <CardComponent {...x} key={idx} />;
             }
