@@ -16,7 +16,7 @@ async function getArticle(id: string) {
   try {
     const res = await axios.get("/api/blog/detail", {
       params: {
-        id,
+        hash: id,
       },
     });
 
