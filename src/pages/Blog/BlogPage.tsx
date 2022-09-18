@@ -38,27 +38,47 @@ const carouselData = [
 //     type: "Tin tức",
 //     slug: "tin-tuc-3",
 //   },
+//   {
+//     title: "The internet's Own boy",
+//     author: "Thầy Minh Cảnh",
+//     publishDate: "21/08/2022",
+//     type: "Tin tức",
+//     slug: "tin-tuc-4",
+//   },
+//   {
+//     title: "The internet's Own boy",
+//     author: "Thầy Minh Cảnh",
+//     publishDate: "21/08/2022",
+//     type: "Tin tức",
+//     slug: "tin-tuc-5",
+//   },
+//   {
+//     title: "The internet's Own boy",
+//     author: "Thầy Minh Cảnh",
+//     publishDate: "21/08/2022",
+//     type: "Tin tức",
+//     slug: "tin-tuc-5",
+//   },
 // ] as CardModel[];
 
+const DEFAULT_ITEM = 3;
+
 const BlogPage = () => {
-  const [articles, setArticles] = useState<CardModel[]>();
+  const [articles, setArticles] = useState<CardModel[]>([]);
+  const [limit, setLimit] = useState<number>(1);
 
   useEffect(() => {
     fetchArticles();
-  }, [articles]);
+  }, []);
 
-  function fetchArticles() {
-    getArticles()
-      ?.then((res) => {
-        const data: CardModel[] = res?.results;
+  async function fetchArticles() {
+    const data = await getArticles().then((res) => res.data);
 
-        if (data?.length > 0) {
-          const transformedData = transformArticleData(data);
+    if (data?.length > 0) {
+      const transformedData = transformArticleData(data);
 
-          setArticles(transformedData);
-        }
-      })
-      .catch((err) => console.log(err));
+      setArticles(transformedData);
+    }
   }
 
   function transformArticleData(data: any[]): CardModel[] {
@@ -66,7 +86,7 @@ const BlogPage = () => {
 
     data.map((item) => {
       return articles.push({
-        id: item._id,
+        id: item.hash,
         title: item.title,
         publishDate: item.createdAt,
         type: item.category,
@@ -78,6 +98,23 @@ const BlogPage = () => {
     });
 
     return articles;
+  }
+
+  function calLimitItem() {
+    if (hasShowMore()) {
+      setLimit(limit + 1);
+    }
+  }
+
+  function hasShowMore(): boolean {
+    if (
+      articles.length > 3 &&
+      limit < Math.ceil(articles.length / DEFAULT_ITEM)
+    ) {
+      return true;
+    }
+
+    return false;
   }
 
   return (
@@ -98,18 +135,26 @@ const BlogPage = () => {
 
       <div className="container mx-auto flex flex-col gap-8">
         <div className="grid grid-cols-1 gap-6 font-helvetica-neue grid-cols-1 sm:grid-cols-2  md:grid-cols-3 mt-2 sm:4 md:mt-8">
-          {articles?.map((x: CardModel, idx: number) => (
-            <CardComponent {...x} key={idx} />
-          ))}
+          {articles?.map((x: CardModel, idx: number) => {
+            if (idx < DEFAULT_ITEM * limit) {
+              return <CardComponent {...x} key={idx} />;
+            }
+          })}
         </div>
-        <div className="text-center">
-          <button
-            type="button"
-            className="text-white text-md uppercase font-medium font-helvetica-neue bg-primary hover:bg-primary-light focus:ring-4 focus:ring-secondary-light rounded-2xl focus:outline-none px-11 py-4"
-          >
-            Xem Thêm
-          </button>
-        </div>
+
+        {hasShowMore() ? (
+          <div className="text-center">
+            <button
+              onClick={calLimitItem}
+              type="button"
+              className="text-white text-md uppercase font-medium font-helvetica-neue bg-primary hover:bg-primary-light focus:ring-4 focus:ring-secondary-light rounded-2xl focus:outline-none px-11 py-4"
+            >
+              Xem Thêm
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </Layout>
   );

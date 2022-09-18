@@ -11,9 +11,7 @@ function App() {
         <div>
           <Routes>
             <Route path="/" element={<BlogPage />} />
-            <Route path="article">
-              <Route path=":id" element={<Article />} />
-            </Route>
+            <Route path="/article/:id" element={<Article />}></Route>
           </Routes>
         </div>
       </Router>

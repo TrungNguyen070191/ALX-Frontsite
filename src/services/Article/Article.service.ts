@@ -4,12 +4,26 @@ axios.defaults.baseURL = process.env.REACT_APP_DEV_BASE_URL;
 
 async function getArticles() {
   try {
-    const res = await axios.get("/blog/all");
+    const res = await axios.get("/api/blog");
 
-    return res.data.results;
+    return res.data;
   } catch (error) {
     console.error(error);
   }
 }
 
-export { getArticles };
+async function getArticle(id: string) {
+  try {
+    const res = await axios.get("/api/blog/detail", {
+      params: {
+        hash: id,
+      },
+    });
+
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export { getArticles, getArticle };
