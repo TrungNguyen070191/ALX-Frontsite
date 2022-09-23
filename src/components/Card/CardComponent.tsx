@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import calendarIcon from "../../assets/images/calendar-icon.svg";
 import clockIcon from "../../assets/images/clock-icon.svg";
-import image4 from "../../assets/images/image4.jpg";
 import { CardModel } from "../../models/card.model";
+
+import "./CardComponent.scss";
 
 const CardComponent = (model: CardModel) => {
   return (
@@ -17,7 +18,7 @@ const CardComponent = (model: CardModel) => {
           <time>2 phút</time>
         </span>
       </div>
-      <img src={image4} className="rounded-3xl" alt="" />
+      <img src={model.img} className="rounded-3xl main-img" alt="" />
       <div className="flex flex-col flex-grow gap-4">
         <div>
           <span className="text-sm text-thin text-secondary bg-secondary-light px-4 py-1 rounded-full">
