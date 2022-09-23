@@ -1,37 +1,3 @@
-.card-container {
-  position: relative;
-  width: 350px;
-  height: 380px;
-  border-radius: 1.5rem;
-  box-sizing: border-box;
-  padding: 0.75rem;
-  margin-top: 1rem;
-
-  .card-img-top {
-    margin: 20px 0;
-  }
-
-  .card-body {
-    text-align: left;
-    padding: 0;
-
-    .card-text {
-      font-size: 0.875rem;
-      line-height: 1.25rem;
-      box-sizing: border-box;
-      padding: 4px 16px;
-      background: green;
-      border-radius: 10px;
-      display: inline-block;
-    }
-  }
-
-  .top-text {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .bot-text {
-    text-align: left;
-  }
+.main-img {
+  height: 217px;
 }
