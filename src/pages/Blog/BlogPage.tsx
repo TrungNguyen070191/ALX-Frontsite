@@ -147,7 +147,7 @@ const BlogPage = () => {
             <button
               onClick={calLimitItem}
               type="button"
-              className="text-white text-md uppercase font-medium font-helvetica-neue bg-primary hover:bg-primary-light focus:ring-4 focus:ring-secondary-light rounded-2xl focus:outline-none px-11 py-4"
+              className="text-white text-md uppercase font-bold font-helvetica-neue bg-primary hover:bg-primary-light focus:ring-4 focus:ring-secondary-light rounded-2xl focus:outline-none px-11 py-4"
             >
               Xem Thêm
             </button>

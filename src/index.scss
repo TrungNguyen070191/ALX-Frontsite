@@ -6,15 +6,26 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "NVNMotherlandSignature";
+  src: local("NVNMotherlandSignature"),
+    url("./assets/fonts/NVN-Motherland-Signature.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "HelveticaNeue";
+  src: local("HelveticaNeue"),
+    url("./assets/fonts/helveticaneue.ttf") format("truetype");
+}
+
 body {
   margin: 0;
-  font-family: 'NVN Motherland Signature', serif;
+  font-family: "HelveticaNeue";
   font-size: 13px;
   padding: 1.25rem;
 }
 
-
 .alx-divider {
-  background-image: url('../src/assets/images/divider.svg');
+  background-image: url("../src/assets/images/divider.svg");
   height: 16px;
 }

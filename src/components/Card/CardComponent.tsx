@@ -26,7 +26,7 @@ const CardComponent = (model: CardModel) => {
           </span>
         </div>
         <Link to={`article/${model.id}`}>
-          <h5 className="flex-grow font-medium text-lg text-secondary mb-3 cursor-pointer hover:text-primary">
+          <h5 className="flex-grow font-bold text-lg text-secondary mb-3 cursor-pointer hover:text-primary">
             {model.title}
           </h5>
         </Link>
