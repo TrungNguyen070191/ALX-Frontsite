@@ -1,7 +1,7 @@
 export interface CardModel {
     id: string;
     title: string;
-    publishDate: string;
+    publishDate: number | string;
     type: string;
     img: string;
     author: string;
