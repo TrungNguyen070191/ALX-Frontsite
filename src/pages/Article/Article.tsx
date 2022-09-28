@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getArticle } from "../../services/Article/Article.service";
 import { useParams } from "react-router-dom";
 import { CardModel } from "../../models/card.model";
+import dayjs from "dayjs";
 
 const Article = () => {
   const [article, setArticle] = useState<CardModel>();
@@ -19,7 +20,7 @@ const Article = () => {
     return {
       id: data.hash,
       title: data.title,
-      publishDate: data.createdAt,
+      publishDate: dayjs(data.createdAt).format("DD/MM/YYYY"),
       type: data.category,
       img: data.mainImage,
       author: data.author || "",

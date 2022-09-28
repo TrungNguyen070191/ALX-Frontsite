@@ -9,6 +9,8 @@ import image3 from "../../assets/images/image3.jpg";
 import { CardModel } from "../../models/card.model";
 import { useEffect, useState } from "react";
 import { getArticles } from "../../services/Article/Article.service";
+import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 
 const carouselData = [
   { slug: "slug-1", text: "Thải độc và Thanh lọc Thân Tâm", imageSrc: image3 },
@@ -84,20 +86,28 @@ const BlogPage = () => {
   function transformArticleData(data: any[]): CardModel[] {
     const articles: CardModel[] = [];
 
-    data.map((item) => {
-      return articles.push({
-        id: item.hash,
-        title: item.title,
-        publishDate: item.createdAt,
-        type: item.category,
-        img: item.mainImage,
-        author: item.author || "",
-        content: item.content,
-        slug: item.slug || "",
+    data
+      .filter((item) => item.createdAt.includes("-"))
+      .map((item) => {
+        return articles.push({
+          id: item.hash,
+          title: item.title,
+          publishDate: toMilliseconds(item.createdAt),
+          type: item.category,
+          img: item.mainImage,
+          author: item.author || "",
+          content: item.content,
+          slug: item.slug || "",
+        });
       });
-    });
 
-    return articles;
+    return articles.sort((a, b) =>
+      (a.publishDate as number) > (b.publishDate as number) ? -1 : 0
+    );
+  }
+
+  function toMilliseconds(date: string): number {
+    return dayjs(date).valueOf();
   }
 
   function calLimitItem() {
@@ -137,7 +147,11 @@ const BlogPage = () => {
         <div className="grid grid-cols-1 gap-6 font-helvetica-neue grid-cols-1 sm:grid-cols-2  md:grid-cols-3 mt-2 sm:4 md:mt-8">
           {articles?.map((x: CardModel, idx: number) => {
             if (idx < DEFAULT_ITEM * limit) {
-              return <CardComponent {...x} key={idx} />;
+              return (
+                <Link to={`article/${x.id}`} key={idx}>
+                  <CardComponent {...x} />
+                </Link>
+              );
             }
           })}
         </div>
