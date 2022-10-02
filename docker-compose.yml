@@ -1,13 +1,12 @@
 version: '3.0'
 services:
-  anlanxa-fe:
+  anlanxa-reactjs:
     build:
       context: .
       dockerfile: Dockerfile
-    command: npm run start
     image: anlacxa-reactjs
     container_name: anlacxa-reactjs
     restart: unless-stopped
     env_file: .env
     ports:
-      - "3333:3333"
+      - "80:80"
