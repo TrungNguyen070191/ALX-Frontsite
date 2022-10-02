@@ -10,6 +10,7 @@
     "@types/node": "^16.11.49",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "cross-env": "^7.0.3",
     "dayjs": "^1.11.5",
     "node-sass": "^7.0.1",
     "react": "^18.2.0",
@@ -21,7 +22,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env PORT=3333 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -50,8 +51,5 @@
     "axios": "^0.27.2",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
-  },
-  "engines": {
-    "node": "12.18.2"
   }
 }
