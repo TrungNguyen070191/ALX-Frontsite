@@ -6,12 +6,12 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . ./
-ENV PORT=3333
 RUN npm run build
 #stage 2: based on Nginx, to have only the compiled app, ready for production with Nginx
 FROM nginx:alpine
 #Copy the default nginx.conf provided to Nginx config
-COPY --from=react-build-stage /app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=react-build-stage /app/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=react-build-stage /app/nginx/anlacxa.key /app/nginx/anlacxa.pem /etc/nginx/
 WORKDIR /usr/share/nginx/html
 #Remove default nginx static assets
 RUN rm -rf ./*
