@@ -3,7 +3,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", ],
   theme: {
     fontFamily:{
-      'helvetica-neue':['Helvetica Neu']
+      'helvetica-neue':['Helvetica Neue']
     },
     colors: {
       white: '#fff',

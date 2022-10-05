@@ -25,9 +25,9 @@ const CardComponent = (model: CardModel) => {
             {model.type}
           </span>
         </div>
-        <h5 className="flex-grow font-medium text-lg text-secondary mb-3 cursor-pointer hover:text-primary">
+        <span className="flex-grow font-medium text-lg text-secondary mb-3 cursor-pointer hover:text-primary">
           {model.title}
-        </h5>
+        </span>
         <p className="text-sm text-neutral-n40">{model.author}</p>
       </div>
     </div>

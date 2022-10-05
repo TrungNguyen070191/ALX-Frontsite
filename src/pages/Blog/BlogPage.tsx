@@ -16,52 +16,8 @@ const carouselData = [
   { slug: "slug-1", text: "Thải độc và Thanh lọc Thân Tâm", imageSrc: image3 },
   { slug: "slug-2", text: "Thải độc và Thanh lọc Thân Tâm", imageSrc: image3 },
   { slug: "slug-3", text: "Thải độc và Thanh lọc Thân Tâm", imageSrc: image3 },
-] as CarouselItemModel[];
 
-// const cardData = [
-//   {
-//     title: "The internet's Own boy",
-//     author: "Thầy Minh Cảnh",
-//     publishDate: "21/08/2022",
-//     type: "Tin tức",
-//     slug: "tin-tuc-1",
-//   },
-//   {
-//     title: "The internet's Own boy",
-//     author: "Thầy Minh Cảnh",
-//     publishDate: "21/08/2022",
-//     type: "Tin tức",
-//     slug: "tin-tuc-2",
-//   },
-//   {
-//     title: "The internet's Own boy",
-//     author: "Thầy Minh Cảnh",
-//     publishDate: "21/08/2022",
-//     type: "Tin tức",
-//     slug: "tin-tuc-3",
-//   },
-//   {
-//     title: "The internet's Own boy",
-//     author: "Thầy Minh Cảnh",
-//     publishDate: "21/08/2022",
-//     type: "Tin tức",
-//     slug: "tin-tuc-4",
-//   },
-//   {
-//     title: "The internet's Own boy",
-//     author: "Thầy Minh Cảnh",
-//     publishDate: "21/08/2022",
-//     type: "Tin tức",
-//     slug: "tin-tuc-5",
-//   },
-//   {
-//     title: "The internet's Own boy",
-//     author: "Thầy Minh Cảnh",
-//     publishDate: "21/08/2022",
-//     type: "Tin tức",
-//     slug: "tin-tuc-5",
-//   },
-// ] as CardModel[];
+] as CarouselItemModel[];
 
 const DEFAULT_ITEM = 3;
 
@@ -75,10 +31,8 @@ const BlogPage = () => {
 
   async function fetchArticles() {
     const data = await getArticles().then((res) => res.data);
-
     if (data?.length > 0) {
       const transformedData = transformArticleData(data);
-
       setArticles(transformedData);
     }
   }
@@ -117,14 +71,7 @@ const BlogPage = () => {
   }
 
   function hasShowMore(): boolean {
-    if (
-      articles.length > 3 &&
-      limit < Math.ceil(articles.length / DEFAULT_ITEM)
-    ) {
-      return true;
-    }
-
-    return false;
+    return articles.length > 3 && limit < Math.ceil(articles.length / DEFAULT_ITEM);
   }
 
   return (
